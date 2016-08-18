@@ -1,6 +1,6 @@
 ## A Simple example using Apache Storm ##
 
-### Use Case ###
+# Use Case #
 ## Real Time Participant Trending For a World-Wide Event ##
 There is a world-wide event on "Future of Pancakes" happening in different parts of the world at the same time.
 Registered participants show up to the event and get their identities verified first.
@@ -35,5 +35,6 @@ EventsRealTimeTrendSpout --> LoggingBolt
 This is the spout that reads from the database and constantly prints the results.
 
 
-
+## To Run ##
+Simply run the eventstrending/Main.java as a standalone java program. You will see the trends constantly streamed to the console.
 

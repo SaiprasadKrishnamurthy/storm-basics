@@ -1,4 +1,4 @@
-package scratchpad;
+package eventstrending;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

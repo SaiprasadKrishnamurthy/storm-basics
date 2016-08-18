@@ -1,4 +1,4 @@
-package scratchpad;
+package eventstrending;
 
 import com.thedeanda.lorem.LoremIpsum;
 import org.apache.storm.shade.org.apache.commons.lang.RandomStringUtils;

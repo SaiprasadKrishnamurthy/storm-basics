@@ -1,4 +1,4 @@
-package scratchpad;
+package eventstrending;
 
 import org.apache.storm.spout.SpoutOutputCollector;
 import org.apache.storm.task.TopologyContext;

@@ -1,4 +1,4 @@
-package scratchpad;
+package eventstrending;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
