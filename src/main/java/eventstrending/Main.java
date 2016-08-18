@@ -44,7 +44,7 @@ public class Main {
 
 
         LocalCluster cluster = new LocalCluster();
-        cluster.submitTopology("EventSeating", config, builder.createTopology());
+        cluster.submitTopology("FutureOfPancakesTrending", config, builder.createTopology());
         Thread.sleep(100000);
 
         cluster.shutdown();
