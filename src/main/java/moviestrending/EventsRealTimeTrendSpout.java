@@ -1,4 +1,4 @@
-package eventstrending;
+package moviestrending;
 
 import org.apache.storm.spout.SpoutOutputCollector;
 import org.apache.storm.task.TopologyContext;

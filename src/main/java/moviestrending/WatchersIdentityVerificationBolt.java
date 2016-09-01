@@ -1,17 +1,19 @@
-package eventstrending;
+package moviestrending;
 
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseRichBolt;
+import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
+import org.apache.storm.tuple.Values;
 
 import java.util.Map;
 
 /**
  * Created by saipkri on 18/08/16.
  */
-public class LoggingBolt extends BaseRichBolt {
+public class WatchersIdentityVerificationBolt extends BaseRichBolt {
     private OutputCollector outputCollector;
     private int boltId;
 
@@ -23,21 +25,13 @@ public class LoggingBolt extends BaseRichBolt {
 
     @Override
     public void execute(final Tuple tuple) {
-        System.out.println("\n\n\n");
-        Map<String, Map<String, Long>> allTrends = (Map<String, Map<String, Long>>) tuple.getValue(0);
-        allTrends.forEach((key, value) -> {
-            System.out.println("Trend name: " + key);
-            System.out.println("-------------------------");
-            value.forEach((k1, v1) -> {
-                System.out.println("\t\t " + k1 + " = " + v1);
-            });
-        });
-        System.out.println("\n\n\n");
+        outputCollector.emit(tuple, new Values(tuple.getString(0), tuple.getString(1), tuple.getLong(2), tuple.getString(3), tuple.getString(4), tuple.getString(5), tuple.getString(6)));
         outputCollector.ack(tuple);
+
     }
 
     @Override
     public void declareOutputFields(final OutputFieldsDeclarer outputFieldsDeclarer) {
-        // Nothing goes here.
+        outputFieldsDeclarer.declare(new Fields("fullName", "gender", "dateOfBirth", "nationality", "placeOfBirth", "passportNumber", "movieName"));
     }
 }

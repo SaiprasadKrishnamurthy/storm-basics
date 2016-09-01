@@ -1,4 +1,4 @@
-package eventstrending;
+package moviestrending;
 
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
@@ -13,28 +13,25 @@ import java.util.Map;
 /**
  * Created by saipkri on 18/08/16.
  */
-public class NationalityTrendingBolt extends BaseRichBolt {
+public class PlaceOfBirthTrendingBolt extends BaseRichBolt {
     private OutputCollector outputCollector;
-    private Map<String, Long> nationalityCounts = new HashMap<>();
-    private int boltId;
-
+    private Map<String, Long> placeOfBirthCounts = new HashMap<>();
 
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
         this.outputCollector = outputCollector;
-        this.boltId = topologyContext.getThisTaskId();
     }
 
     @Override
     public void execute(final Tuple tuple) {
-        nationalityCounts.computeIfAbsent(tuple.getString(3), key -> 0L);
-        nationalityCounts.computeIfPresent(tuple.getString(3), (key, count) -> count + 1L);
-        DataStore.save("nationalityTrend", nationalityCounts);
+        placeOfBirthCounts.computeIfAbsent(tuple.getString(4), key -> 0L);
+        placeOfBirthCounts.computeIfPresent(tuple.getString(4), (key, count) -> count + 1L);
+        DataStore.save(tuple.getString(6), "placeOfBirthTrend", placeOfBirthCounts);
         outputCollector.ack(tuple);
     }
 
     @Override
     public void declareOutputFields(final OutputFieldsDeclarer outputFieldsDeclarer) {
-        outputFieldsDeclarer.declare(new Fields("fullName", "gender", "dateOfBirth", "nationality", "placeOfBirth", "passportNumber"));
+        outputFieldsDeclarer.declare(new Fields("fullName", "gender", "dateOfBirth", "nationality", "placeOfBirth", "passportNumber", "movieName"));
     }
 }
